@@ -45,10 +45,10 @@ jobs:
           python preprocessing/automate_Leonardo-Sanjaya.py
  
       # Save models to GitHub Repository
-      - name: Save mlruns to repo
+      - name: Save Hasil Preprocessing
         run: |
           git config --global user.name ${{ secrets.username }}
           git config --global user.email ${{ secrets.email }}
-          git add .
+          git add preprocessing/automate_Leonardo-Sanjaya.py
           git commit -m "[Automated CI] Melakukan Preprocessing pada Data Baru"
           git push origin main
