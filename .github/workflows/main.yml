@@ -1,0 +1,54 @@
+name: Update_Dataset_Preprocessing
+ 
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+ 
+permissions:
+  contents: write
+  
+env:
+  CSV_URL: "used_car_price_dataset_extended_raw.csv"
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE
+      - uses: actions/checkout@v3
+ 
+      # Setup Python 3.12.7 (sesuai rekomendasi submission)
+      - name: Set up Python 3.12.7
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12.7"
+      
+      # Check Env Variables
+      - name: Check Env
+        run: |
+          echo $CSV_URL
+ 
+      # Install Dependencies
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas sklearn
+      
+      # Run Pipeline Preprocessing
+      - name: Run Preprocessing Data
+        run: |
+          python -m preprocessing/automate_Leonardo-Sanjaya.py
+ 
+      # Save models to GitHub Repository
+      - name: Save mlruns to repo
+        run: |
+          git config --global user.name ${{ secrets.username }}
+          git config --global user.email ${{ secrets.email }}
+          git add .
+          git commit -m "[Automated CI] Melakukan Preprocessing pada Data Baru"
+          git push origin main
