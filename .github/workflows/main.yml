@@ -42,7 +42,7 @@ jobs:
       # Run Pipeline Preprocessing
       - name: Run Preprocessing Data
         run: |
-          python -m /preprocessing/automate_Leonardo-Sanjaya.py
+          python preprocessing/automate_Leonardo-Sanjaya.py
  
       # Save models to GitHub Repository
       - name: Save mlruns to repo
