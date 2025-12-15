@@ -17,4 +17,4 @@ df[numerical_cols] = scaler.fit_transform(df[numerical_cols])
 
 # Pilih fitur yang berkorelasi tinggi dengan target
 df_selected = df[['make_year', 'mileage_kmpl', 'engine_cc', 'owner_count', 'price_usd']]
-df_selected.to_csv('used_car_price_dataset_extended_preprocessing.csv', index=False)
+df_selected.to_csv('preprocessing/used_car_price_dataset_extended_preprocessing.csv', index=False)
